@@ -8,11 +8,21 @@ python3 geolocation.py
 ```
 # Functionality
 ```py
-def my_location():
-  send_url = f"http://api.ipstack.com/check?access_key={ip_stack_apikey}"
-  geo_req = requests.get(send_url)
+import geopy
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
+latitude = input("Latitude: ")
+longitude  = input("Longitude: ")
+def reverse_geo_locate(lat,long): 
+ locator = Nominatim(user_agent='Geo_Locator')
+ coordinates = lat,long
+ location = locator.reverse(coordinates)
+ location.raw
+ print(location)
+reverse_geo_locate(latitude,longitude)
 ```
-**Make sure** to supply the ip_stack_apikey
+Consider reverse_geo.py for locating the coordinates.
+
 # Demo 
 <img src="pictures/demo.png" width=700>
 
