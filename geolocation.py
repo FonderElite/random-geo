@@ -1,4 +1,4 @@
-import random,argparse,requests,time,json,sys
+import random,argparse,requests,time,json,sys,reverse_geo
 from pprint import pprint
 from random import uniform
 from colorama import Fore
@@ -72,11 +72,13 @@ class GeoLocation:
   slow_print("Generating Random Geolocation Coordinates...")
   for i in range(20):
    x,y = uniform(-90,90), uniform(-90, 90)
-   time.sleep(1)
+   time.sleep(0.1)
    print(f"Latitude:{x}<===>,Longitude:{y}")
-map = GeoLocation(args.address)
-map.my_location()
-map.newpoint()
+   reverse_geo.reverse_geo_locate(x,y)
+if __name__ == "__main__":
+    map = GeoLocation(args.address)
+    map.my_location()
+    map.newpoint()
 #_______C o p y R i g h t_______________________
 #Rights to the owner FonderElite
 #----------------------------------------
