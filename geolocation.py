@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser(description="Random GeoLocation")
 parser.add_argument('-a','--address',metavar='',help='Address')
 parser.add_argument('-ak','--apikey',metavar='',help='API KEY')
 args = parser.parse_args()
+ip_stack_apikey = "255e2ed0c218837a05c2e33a7f0de38c"
 class GeoLocation:
  def __init__(self,address):
   self.address = address
@@ -17,16 +18,51 @@ class GeoLocation:
   if geo_req.status_code == 200 or geo_req.status_code < 399:
    json_info = geo_req.text
    geo_json = json.loads(json_info)
-   country = geo_json['country_name']
-   capital = geo_json['location']['capital']
-   ip = geo_json['ip']
-   continent = geo_json['continent_name']
-   global latitude
    latitude = geo_json['latitude']
-   global longitude 
    longitude = geo_json['longitude']
    city = geo_json['city']
-   print('-------------------------------------------------------------------------')
+   print('''
+╦ ╦┌─┐┬─┐┬  ┌┬┐  ╔╦╗┌─┐┌─┐
+║║║│ │├┬┘│   ││  ║║║├─┤├─┘
+╚╩╝└─┘┴└─┴─┘─┴┘  ╩ ╩┴ ┴┴  
+   ''')
+   time.sleep(2)
+   print('''
+
+   180   150W  120W  90W   60W   30W   000   30E   60E   90E   120E  150E  180
+    |     |     |     |     |     |     |     |     |     |     |     |     |
+90N-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-90N
+    |           . _..::__:  ,-"-"._        |7       ,     _,.__             |
+    |   _.___ _ _<_>`!(._`.`-.    /         _._     `_ ,_/  '  '-._.---.-.__|
+    |>.{     " " `-==,',._\{  \  / {)      / _ ">_,-' `                mt-2_|
+60N-+  \_.:--.       `._ )`^-. "'       , [_/(                       __,/-' +-60N
+    | '"'     \         "    _L        oD_,--'                )     /. (|   |
+    |          |           ,'          _)_.\\._<> 6              _,' /  '   |
+    |          `.         /           [_/_'` `"(                <'}  )      |
+30N-+           \\    .-. )           /   `-'"..' `:._          _)  '       +-30N
+    |    `        \  (  `(           /         `:\  > \  ,-^.  /' '         |
+    |              `._,   ""         |           \`'   \|   ?_)  {\         |
+    |                 `=.---.        `._._       ,'     "`  |' ,- '.        |
+000-+                   |    `-._         |     /          `:`<_|h--._      +-000
+    |                   (        >        .     | ,          `=.__.`-'\     |
+    |                    `.     /         |     |{|              ,-.,\     .|
+    |                     |   ,'           \   / `'            ,"     \     |
+30S-+                     |  /              |_'                |  __  /     +-30S
+    |                     | |                                  '-'  `-'   \.|
+    |                     |/                                         "    / |
+    |                     \.                                             '  |
+60S-+                                                                       +-60S
+    |                      ,/            ______._.--._ _..---.---------._   |
+    |     ,-----"-..?----_/ )      __,-'"             "                  (  |
+    |-.._(                  `-----'                                       `-|
+90S-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-90S
+''')
+   time.sleep(1.5)
+   print('''
+╔╦╗┬ ┬  ╔═╗┌─┐┌─┐   ╦  ┌─┐┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
+║║║└┬┘  ║ ╦├┤ │ │───║  │ ││  ├─┤ │ ││ ││││
+╩ ╩ ┴   ╚═╝└─┘└─┘   ╩═╝└─┘└─┘┴ ┴ ┴ ┴└─┘┘└┘
+''')
    pprint(geo_json)
    print('-------------------------------------------------------------------------')
 
@@ -40,16 +76,22 @@ class GeoLocation:
    latitude = location["lat"]
    global longitude
    longitude = location["lon"]
+ 
    pprint(f"Coordinates: Latitude:{latitude}, Longitude:{longitude}")
+   print('---------------------------------------------------------------------------')
  @staticmethod
  def reverse_geo(lat,long,language="en"):
   coordinates = f"{lat},{long}"
   time.sleep(1)
   try:
-   reversed = app.reverse(coordinates, language=language).raw
-   pprint(reversed)
-   print('--------------------------Random ----------------------------------------')
 
+   reversed = app.reverse(coordinates, language=language).raw
+   print('''
+╔═╗┌─┐┌─┐┌─┐┌─┐┌┬┐┌─┐  ╔═╗┌─┐┌─┐╦  ┌─┐┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
+║ ╦├┤ │ ││  │ │ ││├┤   ║ ╦├┤ │ │║  │ ││  ├─┤ │ ││ ││││
+╚═╝└─┘└─┘└─┘└─┘─┴┘└─┘  ╚═╝└─┘└─┘╩═╝└─┘└─┘┴ ┴ ┴ ┴└─┘┘└┘
+''')
+   pprint(reversed)
   except:
    address_rev = reverse_geo(lat, long)
    pprint(address_rev)
