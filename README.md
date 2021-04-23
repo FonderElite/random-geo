@@ -1,2 +1,15 @@
-# random-geo
-Generate Random GeoLocations to explore!
+# 🌎 Random Geo-Location
+This tool generates random geo locations.
+
+# Usage
+```bash
+sudo bash install.sh
+python3 geolocation.py 
+```
+# Demo 
+<img src="picture/demo.png" width=700>
+
+# Covid-19 Awareness
+If you every want to go outside just wear a 😷 mask.
+
+
