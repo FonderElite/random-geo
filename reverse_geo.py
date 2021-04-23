@@ -12,4 +12,3 @@ def reverse_geo_locate(latgeo,longgeo):
  location.raw
  print(location)
 reverse_geo_locate(args.latgeo,args.longgeo)
-
