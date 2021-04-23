@@ -79,8 +79,3 @@ if __name__ == "__main__":
     map = GeoLocation(args.address)
     map.my_location()
     map.newpoint()
-#_______C o p y R i g h t_______________________
-#Rights to the owner FonderElite
-#----------------------------------------
-#Copy Pasting wont make you a good hacker
-#----------------------------------------
