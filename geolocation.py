@@ -62,8 +62,9 @@ class GeoLocation:
   print("Generating Random Geolocation Coordinates...")
   for i in range(10):
    x,y = uniform(-180,180), uniform(-90, 90)
+   time.sleep(1)
    print(f"Latitude:{x},Longitude:{y}")
 map = GeoLocation(args.address)
 map.my_location()
 map.newpoint()
-
+#End
