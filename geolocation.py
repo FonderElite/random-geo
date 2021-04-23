@@ -1,14 +1,23 @@
-import random,argparse,requests
-from geopy.geocoders import Nominatim
-import time,geocoder
-import json
+import random,argparse,requests,time,json,sys
 from pprint import pprint
 from random import uniform
+from colorama import Fore
+from colorama import init
+init(autoreset=True)
+wi="\033[1;37m" #>>White#
+rd="\033[1;31m" #>Red   #
+gr="\033[1;32m" #>Green #
+yl="\033[1;33m" #>Yellow#
 parser = argparse.ArgumentParser(description="Random GeoLocation")
 parser.add_argument('-a','--address',metavar='',help='Address')
 parser.add_argument('-ak','--apikey',metavar='',help='API KEY')
 args = parser.parse_args()
 ip_stack_apikey = "255e2ed0c218837a05c2e33a7f0de38c"
+def slow_print(s):
+    for c in s + '\n' :
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(4. / 100)
 class GeoLocation:
  def __init__(self,address):
   self.address = address
@@ -24,13 +33,13 @@ class GeoLocation:
    global longitude
    longitude = geo_json['longitude']
    city = geo_json['city']
-   print('''
+   slow_print('''
 ╔═╗─┐ ┬┌─┐┬  ┌─┐┬─┐┌─┐  ╔╦╗┬ ┬┌─┐  ╦ ╦┌─┐┬─┐┬  ┌┬┐┬
 ║╣ ┌┴┬┘├─┘│  │ │├┬┘├┤    ║ ├─┤├┤   ║║║│ │├┬┘│   │││
 ╚═╝┴ └─┴  ┴─┘└─┘┴└─└─┘   ╩ ┴ ┴└─┘  ╚╩╝└─┘┴└─┴─┘─┴┘o
    ''')
    time.sleep(2)
-   print('''
+   print(wi + gr + '''
      ,o88~~88888888o,
    ,~~?8P  88888     8,
   d  d88 d88 d8_88     b
@@ -44,27 +53,32 @@ class GeoLocation:
          ~~~~~~
 ''')   
    time.sleep(1.5)
-   print('''
+   slow_print('''
 ╔╦╗┬ ┬  ╔═╗┌─┐┌─┐   ╦  ┌─┐┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
 ║║║└┬┘  ║ ╦├┤ │ │───║  │ ││  ├─┤ │ ││ ││││
 ╩ ╩ ┴   ╚═╝└─┘└─┘   ╩═╝└─┘└─┘┴ ┴ ┴ ┴└─┘┘└┘
 ''')
    pprint(geo_json)
+   time.sleep(1.5)
    print('-------------------------------------------------------------------------')
  @staticmethod
  def newpoint():
   global x,y
-  print('''
+  slow_print('''
 ╦═╗┌─┐┌┐┌┌┬┐┌─┐┌┬┐  ╔═╗┌─┐┌─┐┬─┐┌┬┐┬┌┐┌┌─┐┌┬┐┌─┐┌─┐
 ╠╦╝├─┤│││ │││ ││││  ║  │ ││ │├┬┘ ││││││├─┤ │ ├┤ └─┐
 ╩╚═┴ ┴┘└┘─┴┘└─┘┴ ┴  ╚═╝└─┘└─┘┴└──┴┘┴┘└┘┴ ┴ ┴ └─┘└─┘
 ''') 
-  print("Generating Random Geolocation Coordinates...")
+  slow_print("Generating Random Geolocation Coordinates...")
   for i in range(10):
    x,y = uniform(-180,180), uniform(-90, 90)
    time.sleep(1)
-   print(f"Latitude:{x},Longitude:{y}")
+   print(f"Latitude:{x}<===>,Longitude:{y}")
 map = GeoLocation(args.address)
 map.my_location()
 map.newpoint()
-#End
+#_______C o p y R i g h t_______________________
+#Rights to the owner FonderElite
+#----------------------------------------
+#Copy Pasting wont make you a good hacker
+#----------------------------------------
