@@ -70,7 +70,7 @@ class GeoLocation:
 ╩╚═┴ ┴┘└┘─┴┘└─┘┴ ┴  ╚═╝└─┘└─┘┴└──┴┘┴┘└┘┴ ┴ ┴ └─┘└─┘
 ''') 
   slow_print("Generating Random Geolocation Coordinates...")
-  for i in range(10):
+  for i in range(20):
    x,y = uniform(-90,90), uniform(-90, 90)
    time.sleep(1)
    print(f"Latitude:{x}<===>,Longitude:{y}")
