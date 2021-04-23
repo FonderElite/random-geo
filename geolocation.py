@@ -3,6 +3,7 @@ from geopy.geocoders import Nominatim
 import time,geocoder
 import json
 from pprint import pprint
+from random import uniform
 parser = argparse.ArgumentParser(description="Random GeoLocation")
 parser.add_argument('-a','--address',metavar='',help='Address')
 parser.add_argument('-ak','--apikey',metavar='',help='API KEY')
@@ -18,7 +19,9 @@ class GeoLocation:
   if geo_req.status_code == 200 or geo_req.status_code < 399:
    json_info = geo_req.text
    geo_json = json.loads(json_info)
+   global latitude
    latitude = geo_json['latitude']
+   global longitude
    longitude = geo_json['longitude']
    city = geo_json['city']
    print('''
@@ -28,35 +31,18 @@ class GeoLocation:
    ''')
    time.sleep(2)
    print('''
-
-   180   150W  120W  90W   60W   30W   000   30E   60E   90E   120E  150E  180
-    |     |     |     |     |     |     |     |     |     |     |     |     |
-90N-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-90N
-    |           . _..::__:  ,-"-"._        |7       ,     _,.__             |
-    |   _.___ _ _<_>`!(._`.`-.    /         _._     `_ ,_/  '  '-._.---.-.__|
-    |>.{     " " `-==,',._\{  \  / {)      / _ ">_,-' `                mt-2_|
-60N-+  \_.:--.       `._ )`^-. "'       , [_/(                       __,/-' +-60N
-    | '"'     \         "    _L        oD_,--'                )     /. (|   |
-    |          |           ,'          _)_.\\._<> 6              _,' /  '   |
-    |          `.         /           [_/_'` `"(                <'}  )      |
-30N-+           \\    .-. )           /   `-'"..' `:._          _)  '       +-30N
-    |    `        \  (  `(           /         `:\  > \  ,-^.  /' '         |
-    |              `._,   ""         |           \`'   \|   ?_)  {\         |
-    |                 `=.---.        `._._       ,'     "`  |' ,- '.        |
-000-+                   |    `-._         |     /          `:`<_|h--._      +-000
-    |                   (        >        .     | ,          `=.__.`-'\     |
-    |                    `.     /         |     |{|              ,-.,\     .|
-    |                     |   ,'           \   / `'            ,"     \     |
-30S-+                     |  /              |_'                |  __  /     +-30S
-    |                     | |                                  '-'  `-'   \.|
-    |                     |/                                         "    / |
-    |                     \.                                             '  |
-60S-+                                                                       +-60S
-    |                      ,/            ______._.--._ _..---.---------._   |
-    |     ,-----"-..?----_/ )      __,-'"             "                  (  |
-    |-.._(                  `-----'                                       `-|
-90S-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-90S
-''')
+                          ,o88~~88888888o,
+                        ,~~?8P  88888     8,
+                       d  d88 d88 d8_88     b
+                      d  d888888888          b
+                      8,?88888888  d8.b o.   8
+                      8~88888888~ ~^8888\ db 8
+                      ?  888888          ,888P
+                       ?  `8888b,_      d888P
+                        `   8888888b   ,888'
+                          ~-?8888888 _.P-~    
+                               ~~~~~~
+''')   
    time.sleep(1.5)
    print('''
 ╔╦╗┬ ┬  ╔═╗┌─┐┌─┐   ╦  ┌─┐┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
@@ -65,43 +51,14 @@ class GeoLocation:
 ''')
    pprint(geo_json)
    print('-------------------------------------------------------------------------')
-
- def random_geo(self):
-   global array
-   array = []
-   global app 
-   app = Nominatim(user_agent="Sample")
-   location = app.geocode(self.address).raw
-   global latitude
-   latitude = location["lat"]
-   global longitude
-   longitude = location["lon"]
- 
-   pprint(f"Coordinates: Latitude:{latitude}, Longitude:{longitude}")
-   print('---------------------------------------------------------------------------')
  @staticmethod
- def reverse_geo(lat,long,language="en"):
-  coordinates = f"{lat},{long}"
-  time.sleep(1)
-  try:
-
-   reversed = app.reverse(coordinates, language=language).raw
-   print('''
-╔═╗┌─┐┌─┐┌─┐┌─┐┌┬┐┌─┐  ╔═╗┌─┐┌─┐╦  ┌─┐┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
-║ ╦├┤ │ ││  │ │ ││├┤   ║ ╦├┤ │ │║  │ ││  ├─┤ │ ││ ││││
-╚═╝└─┘└─┘└─┘└─┘─┴┘└─┘  ╚═╝└─┘└─┘╩═╝└─┘└─┘┴ ┴ ┴ ┴└─┘┘└┘
-''')
-   pprint(reversed)
-  except:
-   address_rev = reverse_geo(lat, long)
-   pprint(address_rev)
-   latitude = 36.723
-   longitude = 3.188
-   # get the address info
-   address = get_address_by_location(latitude, longitude)
-   # print all returned data
-   pprint(address)
+ def newpoint():
+  global x,y 
+  print("Generating Random Geolocation Coordinates...")
+  for i in range(10):
+   x,y = uniform(-180,180), uniform(-90, 90)
+   print(f"Latitude:{x},Longitude:{y}")
 map = GeoLocation(args.address)
 map.my_location()
-map.random_geo()
-map.reverse_geo(latitude,longitude)
+map.newpoint()
+
