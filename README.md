@@ -27,6 +27,6 @@ Consider reverse_geo.py for locating the coordinates.
 <img src="pictures/demo.png" width=700>
 
 # Covid-19 Awareness
-If you every want to go outside just wear a 😷 mask.
+If you ever want to go outside just wear a 😷 mask.
 
 
